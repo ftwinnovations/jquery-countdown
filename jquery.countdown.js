@@ -12,6 +12,7 @@
 
 (function($){
 	$.fn.countdown = function(endValue, spec, milliseconds) {
+		spec = spec || {};
 		milliseconds = milliseconds || 1000;
 		spec.prefix = spec.prefix || '';
 		spec.suffix = spec.suffix || '';
