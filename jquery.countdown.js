@@ -6,8 +6,8 @@
  * Released under the MIT and GPL licenses.
  *
  * @param {number} endValue End value
- * @param {object} [spec] {string}prefix, {string}suffix, {function}formatter
- * @param {number} [milliseconds] length of the animation
+ * @param {object} [spec] - {string}prefix, {string}suffix, {function}formatter
+ * @param {number} [milliseconds] - length of the animation
  */
 
 (function($){
@@ -25,8 +25,12 @@
 			timeout,
 			fn;
 
+
 		if (steps > endValue - startValue) {
 			steps = endValue - startValue;
+			if (steps < 0) {
+				steps *= -1;
+			}
 			inc = Math.floor((startValue-endValue) / steps);
 			milliseconds = stepTime * steps;
 		}
