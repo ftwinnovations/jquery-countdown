@@ -5,7 +5,9 @@
  * Copyright 2011 Austin Butler/FTW Innovations, Inc
  * Released under the MIT and GPL licenses.
  *
- * @param endValue = End value
+ * @param {number} endValue End value
+ * @param {object} [spec] {string}prefix, {string}suffix, {function}formatter
+ * @param {number} [milliseconds] length of the animation
  */
 
 (function($){
