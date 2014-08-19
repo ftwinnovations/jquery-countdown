@@ -29,10 +29,7 @@
 			steps = Math.abs(Math.round(startValue - endValue));
 			inc = Math.floor((startValue-endValue) / steps);
 			milliseconds = stepTime * steps;
-			console.log('yup')
 		}
-
-		console.log(startValue, endValue, stepTime, steps, inc);
 
 		var $this = this;
 		fn = function() {
