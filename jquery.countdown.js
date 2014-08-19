@@ -25,15 +25,14 @@
 			timeout,
 			fn;
 
-
-		if (steps > endValue - startValue) {
-			steps = endValue - startValue;
-			if (steps < 0) {
-				steps *= -1;
-			}
+		if (steps > Math.abs(startValue - endValue)) {
+			steps = Math.abs(Math.round(startValue - endValue));
 			inc = Math.floor((startValue-endValue) / steps);
 			milliseconds = stepTime * steps;
+			console.log('yup')
 		}
+
+		console.log(startValue, endValue, stepTime, steps, inc);
 
 		var $this = this;
 		fn = function() {
