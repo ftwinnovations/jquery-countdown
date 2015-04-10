@@ -47,5 +47,6 @@
 		};
 		timeout = setTimeout(fn, stepTime);
 
+        return this;
 	};
 })(jQuery);
