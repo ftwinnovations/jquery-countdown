@@ -19,26 +19,33 @@
 		spec.formatter = spec.formatter || function(val){return val;};
 		var stepTime = 50,
 			steps = Math.floor(milliseconds / stepTime),
-			end = parseInt((Array.isArray(endValue)) ? endValue[0] : endValue, 10),
-			start = parseInt((Array.isArray(endValue)) ? endValue[1] : this.html().replace(/\W+/g, ''), 10),
+			endVal = parseInt((Array.isArray(endValue)) ? endValue[0] : endValue, 10),
+			startVal = parseInt((Array.isArray(endValue)) ? endValue[1] : this.html().replace(/\W+/g, ''), 10),
+            start = startVal,
+            end = endVal,
 			inc = Math.floor((start-end) / steps),
 			timeout,
 			fn;
         
 		if (steps > Math.abs(start - end)) {
-            console.log('bacon');
 			steps = Math.abs(Math.round(start - end));
 			inc = Math.floor((start-end) / steps);
 			milliseconds = stepTime * steps;
 		}
 
         if(steps == 0) {
+            this.html(spec.prefix+spec.formatter(end)+spec.suffix);
             return this;
         }
 
 		var $this = this;
 		fn = function() {
-            start-=inc;
+            start = start - inc;
+            if(startVal < endVal) {
+                start = Math.min(start, endVal);
+            } else {
+                start = Math.max(start, endVal);
+            }
 			milliseconds-=stepTime;
 			$this.html(spec.prefix+spec.formatter(start)+spec.suffix);
 			if (milliseconds <= 0) {
