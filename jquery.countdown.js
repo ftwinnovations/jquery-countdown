@@ -5,7 +5,7 @@
  * Copyright 2011 Austin Butler/FTW Innovations, Inc
  * Released under the MIT and GPL licenses.
  *
- * @param {number} endValue End value
+ * @param {number|array} endValue End value.  If array, first element is end value, first element is forced start value
  * @param {object} [spec] - {string}prefix, {string}suffix, {function}formatter
  * @param {number} [milliseconds] - length of the animation
  */
@@ -19,26 +19,28 @@
 		spec.formatter = spec.formatter || function(val){return val;};
 		var stepTime = 50,
 			steps = Math.floor(milliseconds / stepTime),
-			endValue = parseInt(endValue, 10),
-			startValue = parseInt(this.html().replace(/\W+/g, ''), 10),
-			inc = Math.floor((startValue-endValue) / steps),
+			end = parseInt((Array.isArray(endValue)) ? endValue[0] : endValue, 10),
+			start = parseInt((Array.isArray(endValue)) ? endValue[1] : this.html().replace(/\W+/g, ''), 10),
+			inc = Math.floor((start-end) / steps),
 			timeout,
 			fn;
-
-		if (steps > Math.abs(startValue - endValue)) {
-			steps = Math.abs(Math.round(startValue - endValue));
-			inc = Math.floor((startValue-endValue) / steps);
+        
+		if (steps > Math.abs(start - end)) {
+			steps = Math.abs(Math.round(start - end));
+			inc = Math.floor((start-end) / steps);
 			milliseconds = stepTime * steps;
 		}
 
+
+
 		var $this = this;
 		fn = function() {
-			startValue-=inc;
+            start-=inc;
 			milliseconds-=stepTime;
-			$this.html(spec.prefix+spec.formatter(startValue)+spec.suffix);
+			$this.html(spec.prefix+spec.formatter(start)+spec.suffix);
 			if (milliseconds <= 0) {
 				clearTimeout(timeout);
-				$this.html(spec.prefix+spec.formatter(endValue)+spec.suffix);
+				$this.html(spec.prefix+spec.formatter(end)+spec.suffix);
 				return;
 			}
 			setTimeout(fn, stepTime);
