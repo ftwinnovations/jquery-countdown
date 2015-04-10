@@ -26,12 +26,15 @@
 			fn;
         
 		if (steps > Math.abs(start - end)) {
+            console.log('bacon');
 			steps = Math.abs(Math.round(start - end));
 			inc = Math.floor((start-end) / steps);
 			milliseconds = stepTime * steps;
 		}
 
-
+        if(steps == 0) {
+            return this;
+        }
 
 		var $this = this;
 		fn = function() {
