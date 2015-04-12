@@ -37,7 +37,7 @@
             this.html(spec.prefix+spec.formatter(end)+spec.suffix);
             if (cb) {
                 setTimeout(cb, 0);
-            };
+            }
             return this;
         }
 
