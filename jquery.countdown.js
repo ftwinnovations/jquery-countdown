@@ -11,7 +11,7 @@
  */
 
 (function($){
-	$.fn.countdown = function(endValue, spec, milliseconds) {
+	$.fn.countdown = function(endValue, spec, milliseconds, cb) {
 		spec = spec || {};
 		milliseconds = milliseconds || 1000;
 		spec.prefix = spec.prefix || '';
@@ -35,6 +35,9 @@
 
         if(steps == 0) {
             this.html(spec.prefix+spec.formatter(end)+spec.suffix);
+            if (cb) {
+                setTimeout(cb, 0);
+            };
             return this;
         }
 
@@ -51,6 +54,7 @@
 			if (milliseconds <= 0) {
 				clearTimeout(timeout);
 				$this.html(spec.prefix+spec.formatter(end)+spec.suffix);
+                if (cb) cb();
 				return;
 			}
 			setTimeout(fn, stepTime);
