@@ -12,6 +12,8 @@
 
 (function($){
 	$.fn.countdown = function(endValue, spec, milliseconds, cb) {
+		endValue = (typeof endValue == 'string') ? endValue.replace(/\W+/g, '') : endValue;
+		
 		spec = spec || {};
 		milliseconds = milliseconds || 1000;
 		spec.prefix = spec.prefix || '';
