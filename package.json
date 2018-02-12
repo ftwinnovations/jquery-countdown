@@ -1,0 +1,19 @@
+{
+  "name": "jquery-countdown",
+  "version": "1.0.0",
+  "description": "jquery-countdown ================",
+  "main": "jquery.countdown.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teachingcom/jquery-countdown.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/teachingcom/jquery-countdown/issues"
+  },
+  "homepage": "https://github.com/teachingcom/jquery-countdown#readme"
+}
